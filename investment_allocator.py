@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+import ui_components
 
 def get_allocation_percentages(age):
     """Calculate investment allocation percentages based on age."""

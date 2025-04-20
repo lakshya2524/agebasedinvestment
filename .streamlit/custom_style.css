@@ -1,0 +1,330 @@
+/* Custom CSS styling for the investment management platform */
+
+/* Main interface styling */
+.main {
+    background-color: #f9f9fe;
+}
+
+/* Header styling */
+h1, h2, h3 {
+    color: #1E3A8A;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+h2 {
+    font-weight: 600;
+    padding-top: 10px;
+}
+
+h3 {
+    font-weight: 500;
+    padding-top: 8px;
+}
+
+/* Cards styling */
+.stCard {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: white;
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: #2563EB;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #1D4ED8;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Metric styling */
+.stMetric {
+    background-color: #F3F4F6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Input field styling */
+.stTextInput > div > div > input, 
+.stNumberInput > div > div > input,
+.stSelectbox > div > div > select {
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
+}
+
+.stTextInput > div > div > input:focus, 
+.stNumberInput > div > div > input:focus,
+.stSelectbox > div > div > select:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Sidebar styling */
+.sidebar .sidebar-content {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+/* Progress bar styling */
+.stProgress > div > div > div > div {
+    background-color: #2563EB;
+}
+
+/* Success message styling */
+.stSuccess {
+    background-color: #ECFDF5;
+    color: #065F46;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #10B981;
+}
+
+/* Info message styling */
+.stInfo {
+    background-color: #EFF6FF;
+    color: #1E40AF;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #2563EB;
+}
+
+/* Warning message styling */
+.stWarning {
+    background-color: #FFFBEB;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #F59E0B;
+}
+
+/* Error message styling */
+.stError {
+    background-color: #FEF2F2;
+    color: #991B1B;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #EF4444;
+}
+
+/* Table styling */
+.stTable {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stTable th {
+    background-color: #F3F4F6;
+    color: #1E3A8A;
+    font-weight: 600;
+}
+
+.stTable tr:nth-child(even) {
+    background-color: #F9FAFB;
+}
+
+/* Plotly chart styling */
+.stPlotlyChart {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: white;
+}
+
+/* Expander styling */
+.stExpander {
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+}
+
+.stExpander > div {
+    padding: 1rem;
+}
+
+/* Tab styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 8px 8px 0 0;
+    padding: 8px 16px;
+    background-color: #F3F4F6;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: #2563EB !important;
+    color: white !important;
+}
+
+/* Create space between sections */
+.section-divider {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+/* Custom card classes for widgets */
+.info-card {
+    background-color: #EFF6FF;
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid #2563EB;
+}
+
+.success-card {
+    background-color: #ECFDF5;
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid #10B981;
+}
+
+.warning-card {
+    background-color: #FFFBEB;
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid #F59E0B;
+}
+
+/* Custom styles for data frames */
+.dataframe {
+    border-radius: 8px;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dataframe th {
+    background-color: #F3F4F6 !important;
+    color: #1E3A8A !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+}
+
+/* Custom styling for markdown content */
+.markdown-text-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.markdown-text-container ul {
+    margin-bottom: 1rem;
+}
+
+.markdown-text-container li {
+    margin-bottom: 0.5rem;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #1E3A8A;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #1E3A8A;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Custom dashboard card styling */
+.dashboard-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom metric display styling */
+.metric-container {
+    text-align: center;
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.metric-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1E3A8A;
+}
+
+.metric-label {
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 4px;
+}
+
+/* Animation for dashboard elements */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Custom styling for form elements */
+.stForm > div {
+    background-color: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Loading animation styling */
+.stSpinner > div {
+    border-color: #2563EB !important;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E7EB;
+    text-align: center;
+    color: #6B7280;
+    font-size: 14px;
+}
