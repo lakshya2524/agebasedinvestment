@@ -1,0 +1,175 @@
+/* Custom styling for Age-Based Investment Management Platform */
+
+/* Main page styling */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Headers styling */
+h1, h2, h3 {
+    font-weight: 600 !important;
+}
+
+h1 {
+    font-size: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    color: #1f77b4 !important;
+}
+
+h2 {
+    font-size: 2rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    color: #2c3e50 !important;
+}
+
+h3 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    color: #4b6584 !important;
+}
+
+/* Custom card styling */
+.css-card {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.css-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom metric styling */
+.metric-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    color: #718093;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.metric-delta {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Button styling */
+.stButton > button {
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tab styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 4px 4px 0 0;
+    padding: 10px 16px;
+    font-weight: 500;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: rgba(31, 119, 180, 0.1);
+}
+
+/* Sidebar styling */
+.css-sidebar {
+    padding: 1.5rem;
+}
+
+.css-sidebar .sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Info boxes styling */
+.stAlert {
+    border-radius: 8px;
+}
+
+/* Form styling */
+[data-testid="stForm"] {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: #f9f9f9;
+}
+
+/* Slider styling */
+.stSlider {
+    padding: 10px 0;
+}
+
+/* Data visualization enhancements */
+.stPlotlyChart {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin: 10px 0;
+}
+
+/* Table styling */
+.stTable {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ScrollableTextbox styling */
+.element-container:has(iframe) {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+    
+    h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    h3 {
+        font-size: 1.35rem !important;
+    }
+}
