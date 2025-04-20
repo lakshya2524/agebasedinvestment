@@ -71,7 +71,7 @@ if page_name == "Home":
         <h2 style="color: #1E3A8A; margin-bottom: 10px;">Your Age-Based Investment Platform</h2>
         <p style="font-size: 18px; color: #4B5563;">Personalized investment strategies for every stage of life</p>
     </div>
-    """, 0.2)
+    """, 0)
     
     # Feature highlights as cards
     st.markdown("<h2 style='margin-top: 30px;'>What We Offer</h2>", unsafe_allow_html=True)
