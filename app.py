@@ -6,6 +6,7 @@ import stock_analyzer
 import bond_recommender
 import portfolio_visualizer
 import education_resources
+import tax_planning
 
 # Set page config
 st.set_page_config(
@@ -26,6 +27,7 @@ page = st.sidebar.radio(
         "Stock Analyzer",
         "Bond Recommendations",
         "Portfolio Visualizer",
+        "Tax Planning",
         "Education Resources"
     ]
 )
@@ -41,6 +43,7 @@ if page == "Home":
     * Analyze stocks across global markets
     * Find recommended bonds/fixed income instruments
     * Visualize your portfolio
+    * Optimize tax planning based on marital status
     * Learn investment basics
     
     **Get started by entering your age below:**
@@ -96,6 +99,9 @@ elif page == "Bond Recommendations":
     
 elif page == "Portfolio Visualizer":
     portfolio_visualizer.show()
+    
+elif page == "Tax Planning":
+    tax_planning.show()
     
 elif page == "Education Resources":
     education_resources.show()
