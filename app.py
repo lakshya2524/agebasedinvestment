@@ -43,15 +43,12 @@ def display_metric(label, value, delta=None, delta_color="normal"):
     </div>
     """, unsafe_allow_html=True)
 
-# Sidebar with enhanced styling
-st.markdown("""
-<div class='css-sidebar'>
-    <div class='sidebar-title'>🧭 Navigation</div>
-</div>
-""", unsafe_allow_html=True)
+# Streamlined sidebar navigation
+st.sidebar.image("generated-icon.png", width=80)
+st.sidebar.markdown("<div style='text-align: center; margin-bottom: 20px;'><h3 style='margin-top: 0;'>Investment Platform</h3></div>", unsafe_allow_html=True)
 
 page = st.sidebar.radio(
-    "",  # Empty label since we added the title via markdown
+    "Navigation",  # Label will be hidden below
     [
         "🏠 Home",
         "📊 Age-Based Allocation",
@@ -61,7 +58,8 @@ page = st.sidebar.radio(
         "📊 Portfolio Visualizer",
         "💰 Tax Planning",
         "📚 Education Resources"
-    ]
+    ],
+    label_visibility="collapsed"  # Hide the label but provide it for accessibility
 )
 
 # Home page
@@ -198,42 +196,146 @@ if page == "🏠 Home":
         
         st.markdown("</div>", unsafe_allow_html=True)
         
-    # Feature showcase
+    # Feature showcase with working links
     st.subheader("Explore Our Investment Tools")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("""
-        <div class='feature-card'>
+        # Navigation link to Stock Analyzer
+        stock_analysis_id = "stock-analyzer-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{stock_analysis_id}" onclick="document.querySelector('[data-value=\\'📈 Stock Analyzer\\']').click()" style="cursor: pointer;">
             <h3>📈 Stock Analysis</h3>
             <p>Research and compare stocks across global markets with our comprehensive analyzer.</p>
             <div class="divider"></div>
             <span class="badge badge-primary">Global Markets</span>
             <span class="badge badge-success">Technical Analysis</span>
         </div>
+        <script>
+            document.getElementById('{stock_analysis_id}').addEventListener('click', function() {{
+                // Find the stock analyzer radio button and click it
+                const stockAnalyzerOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '📈 Stock Analyzer'
+                );
+                if (stockAnalyzerOption) stockAnalyzerOption.click();
+            }});
+        </script>
         """, unsafe_allow_html=True)
         
     with col2:
-        st.markdown("""
-        <div class='feature-card'>
+        # Navigation link to Retirement Calculator
+        retirement_id = "retirement-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{retirement_id}" onclick="document.querySelector('[data-value=\\'🏦 Retirement Calculator\\']').click()" style="cursor: pointer;">
             <h3>🏦 Retirement Planning</h3>
             <p>Calculate your retirement needs and see if you're on track to meet your goals.</p>
             <div class="divider"></div>
             <span class="badge badge-primary">Future Projections</span>
             <span class="badge badge-success">Goal Setting</span>
         </div>
+        <script>
+            document.getElementById('{retirement_id}').addEventListener('click', function() {{
+                // Find the retirement calculator radio button and click it
+                const retirementOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '🏦 Retirement Calculator'
+                );
+                if (retirementOption) retirementOption.click();
+            }});
+        </script>
         """, unsafe_allow_html=True)
         
     with col3:
-        st.markdown("""
-        <div class='feature-card'>
+        # Navigation link to Tax Planning
+        tax_id = "tax-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{tax_id}" onclick="document.querySelector('[data-value=\\'💰 Tax Planning\\']').click()" style="cursor: pointer;">
             <h3>💰 Tax Optimization</h3>
             <p>Learn strategies to minimize taxes and maximize your investment returns.</p>
             <div class="divider"></div>
             <span class="badge badge-primary">Tax Savings</span>
             <span class="badge badge-warning">Custom Strategies</span>
         </div>
+        <script>
+            document.getElementById('{tax_id}').addEventListener('click', function() {{
+                // Find the tax planning radio button and click it
+                const taxOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '💰 Tax Planning'
+                );
+                if (taxOption) taxOption.click();
+            }});
+        </script>
+        """, unsafe_allow_html=True)
+        
+    # Add a second row of feature cards
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)  # Add some spacing
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        # Navigation link to Age-Based Allocation
+        allocation_id = "allocation-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{allocation_id}" onclick="document.querySelector('[data-value=\\'📊 Age-Based Allocation\\']').click()" style="cursor: pointer;">
+            <h3>📊 Asset Allocation</h3>
+            <p>Get personalized investment allocation recommendations based on your age profile.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Age-Optimized</span>
+            <span class="badge badge-success">Custom Portfolios</span>
+        </div>
+        <script>
+            document.getElementById('{allocation_id}').addEventListener('click', function() {{
+                // Find the age-based allocation radio button and click it
+                const allocationOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '📊 Age-Based Allocation'
+                );
+                if (allocationOption) allocationOption.click();
+            }});
+        </script>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        # Navigation link to Bond Recommendations
+        bonds_id = "bonds-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{bonds_id}" onclick="document.querySelector('[data-value=\\'💼 Bond Recommendations\\']').click()" style="cursor: pointer;">
+            <h3>💼 Bond Explorer</h3>
+            <p>Find suitable bonds and fixed income investments to match your risk profile.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Fixed Income</span>
+            <span class="badge badge-success">Risk Assessment</span>
+        </div>
+        <script>
+            document.getElementById('{bonds_id}').addEventListener('click', function() {{
+                // Find the bond recommendations radio button and click it
+                const bondsOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '💼 Bond Recommendations'
+                );
+                if (bondsOption) bondsOption.click();
+            }});
+        </script>
+        """, unsafe_allow_html=True)
+        
+    with col3:
+        # Navigation link to Education Resources
+        education_id = "education-link"
+        st.markdown(f"""
+        <div class='feature-card' id="{education_id}" onclick="document.querySelector('[data-value=\\'📚 Education Resources\\']').click()" style="cursor: pointer;">
+            <h3>📚 Financial Education</h3>
+            <p>Learn investment concepts and strategies to improve your financial knowledge.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Learning Resources</span>
+            <span class="badge badge-warning">Beginners Welcome</span>
+        </div>
+        <script>
+            document.getElementById('{education_id}').addEventListener('click', function() {{
+                // Find the education resources radio button and click it
+                const educationOption = Array.from(document.querySelectorAll('[role="radio"]')).find(
+                    el => el.getAttribute('data-value') === '📚 Education Resources'
+                );
+                if (educationOption) educationOption.click();
+            }});
+        </script>
         """, unsafe_allow_html=True)
 
 elif page == "📊 Age-Based Allocation":
