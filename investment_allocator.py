@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-import ui_components
 
 def get_allocation_percentages(age):
     """Calculate investment allocation percentages based on age."""
@@ -157,197 +156,93 @@ def create_breakdown_charts(stocks, bonds, fd, age):
 
 def show():
     """Display the age-based investment allocation page."""
-    st.markdown("<h1 style='color: #1E3A8A;'>Age-Based Investment Allocation</h1>", unsafe_allow_html=True)
+    st.title("Age-Based Investment Allocation")
     
-    # Introduction with styled container
-    ui_components.styled_container(
-        """
-        <p style="font-size: 16px; line-height: 1.6;">
-        Your age is a critical factor in determining how your investments should be allocated across different asset classes.
-        The general rule is: <strong>the younger you are, the more risk you can afford to take</strong>.
-        </p>
-        <p style="font-size: 16px; line-height: 1.6;">
-        Use this interactive tool to determine the recommended allocation for your age and life stage.
-        </p>
-        """,
-        background_color="#F3F4F6",
-        padding="25px",
-        shadow=False
-    )
+    st.markdown("""
+    Your age is a critical factor in determining how your investments should be allocated across different asset classes. 
+    The general rule is: the younger you are, the more risk you can afford to take.
     
-    # User input section with enhanced styling
-    ui_components.add_section_divider()
-    st.markdown("<h2>Your Profile</h2>", unsafe_allow_html=True)
+    Use this tool to determine the recommended allocation for your age.
+    """)
     
-    col1, col2 = st.columns([1, 2])
+    age = st.number_input("Your Age", min_value=18, max_value=100, value=30)
     
-    with col1:
-        ui_components.styled_container(
-            """
-            <h3 style="margin-top: 0; font-size: 1.2rem;">Enter Your Information</h3>
-            """,
-            background_color="#FFFFFF",
-            shadow=True
-        )
-        age = st.number_input("Your Age", min_value=18, max_value=100, value=30)
+    if st.button("Calculate Allocation"):
+        stocks, bonds, fd = get_allocation_percentages(age)
+        risk_level = get_risk_level(age)
         
-        if st.button("Calculate Allocation", key="calculate_allocation_btn"):
-            with st.spinner("Analyzing optimal allocation..."):
-                stocks, bonds, fd = get_allocation_percentages(age)
-                risk_level = get_risk_level(age)
-                
-                # Store in session state for potential use in other pages
-                st.session_state['age'] = age
-                st.session_state['allocation'] = {'stocks': stocks, 'bonds': bonds, 'fd': fd}
-    
-    with col2:
-        ui_components.styled_container(
-            """
-            <h3 style="margin-top: 0; font-size: 1.2rem;">Age-Based Investment Strategy</h3>
-            <p>Our algorithm considers your age to determine an optimal balance between growth and security in your investment portfolio.</p>
-            <ul>
-                <li><strong>18-25:</strong> Maximum growth potential, higher risk tolerance</li>
-                <li><strong>26-40:</strong> Growth-focused with increasing stability</li>
-                <li><strong>41-55:</strong> Balanced growth and income</li>
-                <li><strong>56+:</strong> Income and wealth preservation focus</li>
-            </ul>
-            """,
-            background_color="#EFF6FF",
-            shadow=False
-        )
-    
-    # Results section
-    if 'allocation' in st.session_state:
-        ui_components.add_section_divider()
+        # Store in session state for potential use in other pages
+        st.session_state['age'] = age
+        st.session_state['allocation'] = {'stocks': stocks, 'bonds': bonds, 'fd': fd}
         
-        user_age = st.session_state['age']
-        stocks = st.session_state['allocation']['stocks']
-        bonds = st.session_state['allocation']['bonds']
-        fd = st.session_state['allocation']['fd']
-        risk_level = get_risk_level(user_age)
+        st.subheader(f"Investment Allocation for Age {age}")
         
-        st.markdown(f"<h2>Investment Allocation for Age {user_age}</h2>", unsafe_allow_html=True)
-        
-        # Main allocation display with enhanced styling
         col1, col2 = st.columns([1, 1])
         
         with col1:
-            ui_components.styled_container(
-                f"""
-                <h3 style="margin-top: 0; color: #1E3A8A; font-size: 1.2rem;">Recommended Asset Allocation</h3>
-                """,
-                shadow=True
-            )
+            st.markdown(f"""
+            * **Stocks: {stocks}%**
+            * **Bonds/Mutual Funds: {bonds}%**
+            * **Fixed Deposits: {fd}%**
             
-            metric_col1, metric_col2, metric_col3 = st.columns(3)
-            
-            with metric_col1:
-                ui_components.create_metric_display("Stocks", f"{stocks}%")
-            
-            with metric_col2:
-                ui_components.create_metric_display("Bonds/Mutual Funds", f"{bonds}%")
-                
-            with metric_col3:
-                ui_components.create_metric_display("Fixed Deposits", f"{fd}%")
-                
-            st.markdown("<br>", unsafe_allow_html=True)
-            
-            ui_components.styled_container(
-                f"""
-                <h4 style="margin-top: 0; color: #1E3A8A;">Risk Tolerance Profile: <span style="color: #2563EB;">{risk_level}</span></h4>
-                <p style="line-height: 1.6;">{get_risk_description(risk_level)}</p>
-                """,
-                background_color="#F9FAFB",
-                shadow=False
-            )
+            **Risk Tolerance Level: {risk_level}**
+            """)
+            st.markdown(get_risk_description(risk_level))
             
         with col2:
             pie_chart = create_allocation_pie_chart(stocks, bonds, fd)
             st.plotly_chart(pie_chart, use_container_width=True)
         
-        # Detailed breakdown section
-        ui_components.add_section_divider()
-        st.markdown("<h2>Detailed Asset Breakdown</h2>", unsafe_allow_html=True)
-        
-        ui_components.styled_container(
-            """
-            <p>Here's a more detailed breakdown of the recommended allocations within each asset class:</p>
-            """,
-            background_color="#F9FAFB",
-            shadow=False
-        )
+        st.subheader("Detailed Breakdown")
+        st.markdown("Here's a more detailed breakdown of the recommended allocations within each asset class:")
         
         # Detailed breakdown charts
-        stock_breakdown, bond_breakdown = create_breakdown_charts(stocks, bonds, fd, user_age)
+        stock_breakdown, bond_breakdown = create_breakdown_charts(stocks, bonds, fd, age)
         
-        tab1, tab2 = st.tabs(["Stock Breakdown", "Bond Breakdown"])
+        st.plotly_chart(stock_breakdown, use_container_width=True)
+        st.plotly_chart(bond_breakdown, use_container_width=True)
         
-        with tab1:
-            st.plotly_chart(stock_breakdown, use_container_width=True)
+        st.subheader("Allocation Explanation")
+        
+        if 18 <= age <= 25:
+            st.markdown("""
+            **Young Investors (18-25)**
             
-        with tab2:
-            st.plotly_chart(bond_breakdown, use_container_width=True)
-        
-        # Allocation explanation section
-        ui_components.add_section_divider()
-        st.markdown("<h2>Your Investment Strategy Explained</h2>", unsafe_allow_html=True)
-        
-        if 18 <= user_age <= 25:
-            ui_components.styled_container(
-                """
-                <h3 style="margin-top: 0; color: #1E3A8A;">Young Investors (18-25)</h3>
-                <p style="line-height: 1.6;">At this age, you have the longest time horizon, allowing you to:</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Take on more risk</strong> for potentially higher returns</li>
-                    <li><strong>Weather market volatility</strong> and downturns</li>
-                    <li><strong>Focus on capital appreciation</strong> rather than income</li>
-                </ul>
-                <p style="line-height: 1.6;">That's why we recommend a higher allocation to stocks, particularly growth-oriented investments.</p>
-                """,
-                background_color="#EFF6FF",
-                shadow=True
-            )
-        elif 26 <= user_age <= 40:
-            ui_components.styled_container(
-                """
-                <h3 style="margin-top: 0; color: #1E3A8A;">Early to Mid-Career Investors (26-40)</h3>
-                <p style="line-height: 1.6;">At this stage, you're likely:</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Building your career</strong> and increasing income</li>
-                    <li><strong>Taking on more financial responsibilities</strong> like home ownership or family</li>
-                    <li><strong>Still have a long time horizon</strong>, but beginning to think about future goals</li>
-                </ul>
-                <p style="line-height: 1.6;">We recommend maintaining a strong allocation to stocks while gradually increasing more stable investments.</p>
-                """,
-                background_color="#EFF6FF",
-                shadow=True
-            )
+            At this age, you have the longest time horizon, allowing you to:
+            * Take on more risk for potentially higher returns
+            * Weather market volatility and downturns
+            * Focus on capital appreciation rather than income
+            
+            That's why we recommend a higher allocation to stocks, particularly growth-oriented investments.
+            """)
+        elif 26 <= age <= 40:
+            st.markdown("""
+            **Early to Mid-Career Investors (26-40)**
+            
+            At this stage, you're likely:
+            * Building your career and increasing income
+            * Starting to have more financial responsibilities
+            * Still have a long time horizon, but beginning to think about future goals
+            
+            We recommend maintaining a strong allocation to stocks while gradually increasing more stable investments.
+            """)
         else:  # age > 40
-            ui_components.styled_container(
-                """
-                <h3 style="margin-top: 0; color: #1E3A8A;">Mid to Late Career Investors (40+)</h3>
-                <p style="line-height: 1.6;">As you approach retirement:</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Capital preservation</strong> becomes increasingly important</li>
-                    <li><strong>Income generation</strong> starts to become a priority</li>
-                    <li><strong>Recovery time</strong> from market downturns is shorter</li>
-                </ul>
-                <p style="line-height: 1.6;">We recommend a more balanced portfolio with increased allocation to bonds and fixed income investments.</p>
-                """,
-                background_color="#EFF6FF",
-                shadow=True
-            )
-        
-        # Additional guidance note
-        ui_components.info_card("""
-        <h4 style="margin-top: 0;">Important Note</h4>
-        <p style="line-height: 1.6;">This is a general guideline based on age alone. Your actual investment allocation should consider other factors like:</p>
-        <ul style="line-height: 1.8;">
-            <li>Financial goals (education, home purchase, retirement)</li>
-            <li>Personal risk tolerance</li>
-            <li>Current financial situation (debt, emergency savings)</li>
-            <li>Existing investments</li>
-            <li>Time horizon for specific goals</li>
-        </ul>
-        <p style="line-height: 1.6;">Consider consulting with a financial advisor for personalized investment advice.</p>
+            st.markdown("""
+            **Mid to Late Career Investors (40+)**
+            
+            As you approach retirement:
+            * Capital preservation becomes increasingly important
+            * Income generation starts to become a priority
+            * Recovery time from market downturns is shorter
+            
+            We recommend a more balanced portfolio with increased allocation to bonds and fixed income investments.
+            """)
+            
+        st.info("""
+        **Note:** This is a general guideline based on age alone. Your actual investment allocation should consider other factors like:
+        * Financial goals
+        * Risk tolerance
+        * Current financial situation
+        * Existing investments
+        * Time horizon for specific goals
         """)
