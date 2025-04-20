@@ -159,25 +159,42 @@ if page == "🏠 Home":
             if risk_level == "High":
                 st.markdown("### 📈 Risk Profile")
                 risk_color = "#EF553B"
+                risk_icon = "📈"
             elif risk_level == "Medium-High":
                 st.markdown("### 📊 Risk Profile")
                 risk_color = "#FFA15A"
+                risk_icon = "📊"
             elif risk_level == "Medium":
                 st.markdown("### 📉 Risk Profile")
                 risk_color = "#636EFA"
+                risk_icon = "📉"
             else:
                 st.markdown("### 📉 Risk Profile")
                 risk_color = "#00CC96"
+                risk_icon = "📉"
             
             st.markdown(f"""
-            <div style="background-color: {risk_color}; padding: 10px; border-radius: 5px; text-align: center; color: white; font-weight: bold;">
-                {risk_level}
+            <div class="risk-indicator" style="background: linear-gradient(135deg, {risk_color} 0%, {risk_color}CC 100%);">
+                <span style="font-size: 1.8rem;">{risk_icon}</span>
+                <div style="font-size: 1.2rem; margin-top: 5px;">{risk_level}</div>
+            </div>
+            <div class="tooltip">
+                <small style="color: #718093; cursor: help;">What does this mean?</small>
+                <span class="tooltip-text">This risk assessment is based on your age and determines your recommended investment allocation strategy.</span>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown(f"### Risk Tolerance Assessment")
             st.markdown(investment_allocator.get_risk_description(risk_level))
+            
+            # Add action buttons
+            st.markdown("""
+            <div style="margin-top: 15px;">
+                <span class="badge badge-primary" style="margin-right: 8px;">Age-Based</span>
+                <span class="badge badge-success">Personalized</span>
+            </div>
+            """, unsafe_allow_html=True)
         
         st.markdown("</div>", unsafe_allow_html=True)
         
@@ -188,25 +205,34 @@ if page == "🏠 Home":
     
     with col1:
         st.markdown("""
-        <div class='css-card'>
+        <div class='feature-card'>
             <h3>📈 Stock Analysis</h3>
             <p>Research and compare stocks across global markets with our comprehensive analyzer.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Global Markets</span>
+            <span class="badge badge-success">Technical Analysis</span>
         </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown("""
-        <div class='css-card'>
+        <div class='feature-card'>
             <h3>🏦 Retirement Planning</h3>
             <p>Calculate your retirement needs and see if you're on track to meet your goals.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Future Projections</span>
+            <span class="badge badge-success">Goal Setting</span>
         </div>
         """, unsafe_allow_html=True)
         
     with col3:
         st.markdown("""
-        <div class='css-card'>
+        <div class='feature-card'>
             <h3>💰 Tax Optimization</h3>
             <p>Learn strategies to minimize taxes and maximize your investment returns.</p>
+            <div class="divider"></div>
+            <span class="badge badge-primary">Tax Savings</span>
+            <span class="badge badge-warning">Custom Strategies</span>
         </div>
         """, unsafe_allow_html=True)
 
